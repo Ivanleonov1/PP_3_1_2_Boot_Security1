@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать</title>
+</head>
+<body>
+<form th:method="patch" th:action="@{/admin}" th:object="${user}">
+    <fieldset style="width: fit-content">
+        <legend>Данные о текущем пользователе</legend>
+        <label for="n">Имя:</label>
+        <input id="n" type="text" th:field="*{nickname}" th:value="${user.getNickname()}">
+        <br>
+        <label for="f">Телефон:</label>
+        <input id="f" type="text" th:field="*{phoneNumber}" th:value="${user.getPhoneNumber()}">
+        <br>
+        <input type="hidden" th:field="*{id}" th:value="${user.getId()}">
+        <input type="submit" value="Сохранить">
+    </fieldset>
+</form>
+</body>
+</html>

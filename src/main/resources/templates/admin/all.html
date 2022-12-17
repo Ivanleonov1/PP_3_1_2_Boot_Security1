@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <style>
+        body {
+            font-size: x-large;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid;
+            align-content: center;
+        }
+
+        tr:hover td {
+            background-color: lightblue;
+        }
+
+        .no-border {
+            border: 0;
+            width: fit-content;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <a href="/admin/new">Новый пользователь</a>
+    <hr>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Пользователь</th>
+            <th class="no-border">Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="u, it : ${users}">
+            <th th:text="${u.getId()}"></th>
+            <td style="width: 100%"><a th:href="@{/user/{i}(i=${u.getId()})}" th:text="${u.getNickname() + ' ' + u.getPhoneNumber()}"/></td>
+            <td class="no-border">
+                <form th:method="get" th:action="@{/admin/{i}/edit(i=${u.getId()})}">
+                    <input type="submit" value="редакт."/>
+                </form>
+                <form th:method="delete" th:action="@{/admin}">
+                    <input type="hidden" name="id" th:value="${u.getId()}">
+                    <input type="submit" value="удалить"/>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
