@@ -2,10 +2,11 @@ package ru.kata.spring.boot_security.demo.model;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.Objects;
-
+@Component
 @Data
 @Entity
 @Table(name = "roles")

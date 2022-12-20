@@ -3,6 +3,7 @@ package ru.kata.spring.boot_security.demo.model;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -10,7 +11,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-
+@Component
 @Data
 @Entity
 @Table(name = "users")
@@ -101,4 +102,6 @@ public class User implements UserDetails {
     public int hashCode() {
         return Objects.hash(getId());
     }
+
+
 }

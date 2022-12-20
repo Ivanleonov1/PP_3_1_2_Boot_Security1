@@ -8,9 +8,11 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.stereotype.Component;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
-
+@Component
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -22,15 +24,33 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.formLogin()
+                .successHandler(new SuccessUserHandler())
+                .loginProcessingUrl("/login")
+
+                .usernameParameter("username")
+                .passwordParameter("password")
+
+                .permitAll();
+
+        http.logout()
+                .permitAll()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login")
+                .and().csrf().disable();
+
         http
                 .authorizeRequests()
-                    .antMatchers("/admin/**").authenticated()
+                .antMatchers("/login").anonymous()
+                // .antMatchers("/").permitAll()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/user/**").hasAnyRole("ADMIN", "USER")
+                .anyRequest().authenticated()
                 .and()
-                    .formLogin().loginPage("/").loginProcessingUrl("/train-login").successForwardUrl("/admin")
-                    .permitAll()
+                .formLogin()
                 .and()
-                    .logout()
-                    .permitAll();
+                .logout().logoutSuccessUrl("/");
+
 
     }
 
