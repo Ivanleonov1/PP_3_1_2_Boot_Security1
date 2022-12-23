@@ -230,10 +230,10 @@
                     <label for="emailInput" class="form-label d-block mx-auto pt-1 mt-3 mb-0 text-center fs-5 fw-bold"
                            style="width: 380px;">Email</label>
                     <input th:field="*{username}" required type="email" class="form-control mx-auto"
-                           style="width: 380px;" id="emailInput" placeholder="Email">
+                           style="width: 380px;" id="emailInput" placeholder="Email"autocomplete="off">
                     <label for="passwordInput" class="form-label d-block mx-auto pt-1 mt-3 mb-0 text-center fs-5 fw-bold">Password</label>
                     <input th:field="*{password}" required type="password" class="form-control mx-auto"
-                           style="width: 380px;" id="passwordInput" placeholder="Password">
+                           style="width: 380px;" id="passwordInput" placeholder="Password" autocomplete="off">
                     <label for="roles" class="form-label d-block mx-auto pt-1 mt-3 mb-0 text-center fs-5 fw-bold">Role</label>
                     <select name="roles" size="2" multiple required class="form-select mx-auto"
                             aria-label="Default select" style="width: 380px;" id="roles">

@@ -5,14 +5,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class LoginController {
+public class UserController {
 
-    @GetMapping("/")
+
+    @GetMapping("/login")
     public String getLoginPage() {
-        return "/login";
+        return "/user";
     }
 
-    @PostMapping("/admin")
+    @PostMapping("/user")
     public String redirectToMainPage() {
         return "redirect:/admin";
     }

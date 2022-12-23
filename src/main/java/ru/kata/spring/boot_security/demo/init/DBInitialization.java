@@ -34,7 +34,7 @@ public class DBInitialization {
                         "Иванов", (byte) 23, new BCryptPasswordEncoder().encode("user"));
         User user2 = new User
                 ("admin@mail.ru", "Алексей", "Сидоров",
-                        (byte) 24, new BCryptPasswordEncoder().encode("admin"));
+                        (byte) 24, new BCryptPasswordEncoder().encode("admin1"));
 
         user1.setRoles(new HashSet<>(Set.of(role2)));
         user2.setRoles(new HashSet<>(Set.of(role1)));
