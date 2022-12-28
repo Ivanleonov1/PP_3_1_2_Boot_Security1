@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("user")
+@RequestMapping("/user/**")
 public class UserController {
 
 
-    @GetMapping("/login")
+    @GetMapping
     public String getLoginPage() {
         return "/user";
     }
