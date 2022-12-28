@@ -131,10 +131,10 @@
                                             multiple required class="form-select mx-auto"
                                             aria-label="Default select" style="width: 250px;">
                                       <th:block th:if="${user.roles.size()<2}">
-                                        <option value="2" selected th:each="role : ${user.roles}" th:if="${role.name=='ROLE_ADMIN'}">ADMIN</option>
-                                        <option value="2" th:each="role : ${user.roles}" th:if="${role.name!='ROLE_ADMIN'}">ADMIN</option>
-                                        <option value="1" selected th:each="role : ${user.roles}" th:if="${role.name=='ROLE_USER'}">USER</option>
-                                        <option value="1" th:each="role : ${user.roles}" th:if="${role.name!='ROLE_USER'}">USER</option>
+                                        <option value="2" selected th:each="role : ${user.roles}" th:if="${role.name=='ROLE_USER'}">USER</option>
+                                        <option value="2" th:each="role : ${user.roles}" th:if="${role.name!='ROLE_USER'}">USER</option>
+                                        <option value="1" selected th:each="role : ${user.roles}" th:if="${role.name=='ROLE_ADMIN'}">ADMIN</option>
+                                        <option value="1" th:each="role : ${user.roles}" th:if="${role.name!='ROLE_ADMIN'}">ADMIN</option>
                                       </th:block>
                                       <th:block th:if="${user.roles.size()==2}">
                                         <option value="2" selected>ADMIN</option>
