@@ -7,16 +7,17 @@ import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.repository.RoleRepository;
 import ru.kata.spring.boot_security.demo.repository.UserRepository;
 
+
 import javax.annotation.PostConstruct;
 import java.util.HashSet;
 import java.util.Set;
 
 @Component
-public class DBInitialization {
+public class DBInitializer {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
 
-    public DBInitialization(UserRepository userRepository, RoleRepository roleRepository) {
+    public DBInitializer(UserRepository userRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
     }
@@ -30,11 +31,11 @@ public class DBInitialization {
         roleRepository.save(role2);
 
         User user1 = new User
-                ( "user@mail.ru", "Иван",
-                        "Иванов", (byte) 23, new BCryptPasswordEncoder().encode("user"));
+                ("user@mail.ru", "Иван", "Иванов", (byte) 23,
+                        new BCryptPasswordEncoder().encode("user"));
         User user2 = new User
-                ("admin@mail.ru", "Алексей", "Сидоров",
-                        (byte) 24, new BCryptPasswordEncoder().encode("admin1"));
+                ("admin@mail.ru", "Алексей", "Петров", (byte) 33,
+                        new BCryptPasswordEncoder().encode("admin"));
 
         user1.setRoles(new HashSet<>(Set.of(role2)));
         user2.setRoles(new HashSet<>(Set.of(role1)));

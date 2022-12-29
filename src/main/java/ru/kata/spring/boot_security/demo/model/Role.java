@@ -2,11 +2,10 @@ package ru.kata.spring.boot_security.demo.model;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.Objects;
-@Component
+
 @Data
 @Entity
 @Table(name = "roles")
@@ -14,19 +13,15 @@ public class Role implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "name")
-    private String name;
+
+    @Column
+    private String authority;
 
     public Role() {
     }
 
-    public Role(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String getAuthority() {
-        return getName();
+    public Role(String authority) {
+        this.authority = authority;
     }
 
     @Override

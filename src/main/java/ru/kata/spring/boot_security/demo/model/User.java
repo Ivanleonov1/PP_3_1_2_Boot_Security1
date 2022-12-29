@@ -3,7 +3,6 @@ package ru.kata.spring.boot_security.demo.model;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -11,35 +10,27 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-@Component
 @Data
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "email_address")
     private String username;
-
-    @Column(name = "first_name")
+    @Column
     private String firstName;
-
-    @Column(name = "last_name")
+    @Column
     private String lastName;
-
-    @Column(name = "age")
+    @Column
     private Byte age;
-
-    @Column(name = "password")
+    @Column
     private String password;
 
-
     @ManyToMany
-    @JoinTable(
-            name = "users_roles",
+    @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private Set<Role> roles = new HashSet<>();
@@ -58,16 +49,6 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getRoles();
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return username;
     }
 
     @Override
@@ -102,6 +83,4 @@ public class User implements UserDetails {
     public int hashCode() {
         return Objects.hash(getId());
     }
-
-
 }
