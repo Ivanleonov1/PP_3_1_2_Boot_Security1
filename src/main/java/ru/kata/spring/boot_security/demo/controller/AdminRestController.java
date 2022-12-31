@@ -11,6 +11,7 @@ import java.util.List;
 
 
 @RestController
+@RequestMapping("api/admin")
 public class AdminRestController {
 
     private final UserService userService;
@@ -26,7 +27,7 @@ public class AdminRestController {
         return new ModelAndView("main");
     }
 
-    @GetMapping("api/admin")
+    @GetMapping()
     public ResponseEntity<List<User>> getInfoUsersList() {
         List<User> userList = userService.getAllUsers();
         if (userList.isEmpty()) {
@@ -35,7 +36,7 @@ public class AdminRestController {
         return new ResponseEntity<>(userList, HttpStatus.OK); // 200
     }
 
-    @GetMapping("api/admin/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable long id) {
         User user = userService.getUserById(id);
         if (user == null) {
@@ -44,7 +45,7 @@ public class AdminRestController {
         return new ResponseEntity<>(user, HttpStatus.OK); // 200
     }
 
-    @PostMapping("api/admin")
+    @PostMapping
     public ResponseEntity<User>  getSaveUserForm(@RequestBody User user) {
         if (userService.addUser(user)) {
             return new ResponseEntity<>(user, HttpStatus.CREATED); // 201
@@ -52,7 +53,7 @@ public class AdminRestController {
         return new ResponseEntity<>(user, HttpStatus.CONFLICT); // 400
     }
 
-    @PutMapping("api/admin")
+    @PutMapping
     public ResponseEntity<User> getUpdateUserForm(@RequestBody User user) {
         if (userService.updateUser(user)) {
             return new ResponseEntity<>(user, HttpStatus.OK); // 200
@@ -60,7 +61,7 @@ public class AdminRestController {
         return new ResponseEntity<>(HttpStatus.CONFLICT); // 400
     }
 
-    @DeleteMapping("api/admin/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Long>  getRemoveUserForm(@PathVariable long id) {
         if (userService.deleteUserById(id)) {
             return new ResponseEntity<>(id, HttpStatus.OK); // 200
