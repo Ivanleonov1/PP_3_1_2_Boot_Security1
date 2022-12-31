@@ -8,7 +8,7 @@ import ru.kata.spring.boot_security.demo.service.UserService;
 
 import java.security.Principal;
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("api/admin")
 public class MainController {
 
     private final UserService userService;
