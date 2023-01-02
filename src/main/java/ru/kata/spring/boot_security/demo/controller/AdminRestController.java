@@ -21,7 +21,7 @@ public class AdminRestController {
     }
 
 
-    @GetMapping("/main")
+    @GetMapping("/admin")
     public ModelAndView getMainPage() {
 
         return new ModelAndView("main");
